@@ -1,8 +1,8 @@
 #!/bin/bash
 
-
+#Set seconds to a value of 0 for the script to track time.
 SECONDS=0
-#Begin timing loop
+
 #Function to be used in order to finalize data, call GNUplot scripts and exit gracefully.
 function plotAndExit()
 {
@@ -14,7 +14,11 @@ function plotAndExit()
 	paste - - <buffcachememory.txt > buffcachememory.dat
 	paste - - <availablememory.txt > availablememory.dat
 	paste - - <cpuusage.txt > cpuusage.dat
-	echo "\n"
+	gnuplot gputemps.p
+	gnuplot memorystats.p
+	gnuplot cpufrequency.p
+	gnuplot cputemps.p
+	gnuplot cpuusage.p
 	echo "Plotting graphs and exiting."
 	exit 1
 }
