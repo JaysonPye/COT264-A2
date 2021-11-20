@@ -18,7 +18,8 @@ function plotAndExit()
 	echo "Plotting graphs and exiting."
 	exit 1
 }
-#Trap to be used for SIGINT signal to call exit function.
+#Trap to be used for both SIGINT and USR1 signal to call exit function.
+trap 'plotAndExit' USR1
 trap 'plotAndExit' SIGINT
 
 #Remove old txt and dat files if they exist so that data isnt appended

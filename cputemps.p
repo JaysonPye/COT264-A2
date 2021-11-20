@@ -6,5 +6,5 @@ set title 'Cpu temperatures during compilation'
 set xlabel "Seconds"
 set ylabel "CPU temperature"
 #plot graphic
-plot "cputemps.plottieboy"
+plot "cputemps.dat" with lines
 
