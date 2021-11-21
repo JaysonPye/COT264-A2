@@ -37,11 +37,11 @@ do
 	echo $SECONDS | tee -a cputemps.txt gputemps.txt usedmemory.txt freememory.txt buffcachememory.txt availablememory.txt cpufrequency.txt >> cpuusage.txt
 	#Save CPU temperatures to a file
 	cpuTemp=$(</sys/class/thermal/thermal_zone0/temp)
-	echo $cpuTemp | awk -F= '{printf ("%.2f \n", ($1/1000))}'>> cputemps.txt
+	echo "$cpuTemp" | awk -F= '{printf ("%.2f \n", ($1/1000))}'>> cputemps.txt
 
 	#Edit data and save CPU frequency to a file
 	frequency=$(vcgencmd measure_clock arm)
-	echo $frequency | awk -F= '{printf ("%.2f \n", ($2/1000000000))}' >> cpufrequency.txt
+	echo "$frequency"	| awk -F= '{printf ("%.2f \n", ($2/1000000000))}' >> cpufrequency.txt
 
 	#Save GPU temp to a file
 	vcgencmd measure_temp | awk -F= '{printf("%.2f \n", ($2))}' >> gputemps.txt
